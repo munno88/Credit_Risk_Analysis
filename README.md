@@ -30,7 +30,7 @@ Using the 75/25% method to split the data for training vs. testing, 51,366 "low 
 Naive RandomOverSampler Model randomly selects from the minority class and adds it to the training set until both classifications are equal. The results classified 51,366 records each as High Risk and Low Risk.
 ![random_oversampling](https://user-images.githubusercontent.com/103727169/192158862-bb1749b9-6290-46e5-8ed4-d263ee9818df.png)
 
-* Balanced accuracy score : 64%.
+* Balanced accuracy score : 66%.
 
   ![balance_accuracy](https://user-images.githubusercontent.com/103727169/192158995-3ed8b87d-d2bd-413a-9659-4ff51324c29f.png)
 
@@ -84,6 +84,59 @@ SMOTEENN (Synthetic Minority Oversampling Technique + Edited NearestNeighbors) M
 
   ![smoteenn_confusionmatrix](https://user-images.githubusercontent.com/103727169/192160476-2ebd42e6-0d15-42db-8818-1683ece72606.png)
   ![smoteenn_classificationreport](https://user-images.githubusercontent.com/103727169/192160489-c4c53e89-409b-4b18-8e0d-9cb8f8b6704d.png)
+  
+# Deliverable 3 > Use Ensemble Classifiers to Predict Credit Risk
+  
+Compare two new Machine Learning models that reduce bias to predict credit risk. The models classified 51,366 as High Risk and 246 as Low Risk.
+![rfc_counter](https://user-images.githubusercontent.com/103727169/192160980-dd45efbd-f006-432b-92b7-c1cb14aa45f6.png)
+
+* The balanced accuracy score increased to 78.9% for this model.
+  ![rfc_balanceaccuracy](https://user-images.githubusercontent.com/103727169/192161000-9fcf483f-3096-4051-a67c-6298f52bb466.png)
+* The "High Risk precision rate increased to 3% with the recall at 70% giving this model an F1 score of 6%.
+* "Low Risk" still had a precision rate of 100% with the recall at 87%.
+* The top feature by importance was "total_rec_prncp" at 7.9% of the total.
+
+  ![rfc_matrix](https://user-images.githubusercontent.com/103727169/192161027-6998dd68-6f98-4350-a36e-2e71296ce271.png)
+  ![rfc_classification](https://user-images.githubusercontent.com/103727169/192161038-a131ee6b-76f0-4203-84b9-97ddfec788bf.png)
+  ![rfc_features](https://user-images.githubusercontent.com/103727169/192161050-8569067d-5f49-49fb-b57e-2bf7216fe64a.png)
+
+**EasyEnsembleClassifier Model**, a set of classifiers where individual decisions are combined to classify new examples.
+
+* The balanced accuracy score increased to 93.2% with this model.\
+  ![ada_accuracy](https://user-images.githubusercontent.com/103727169/192161279-19e4274d-9c45-4109-b3fc-29c9725b16e3.png)
+
+* The "High Risk precision rate increased to 9% with the recall at 92% giving this model an F1 score of 16%.
+* "Low Risk" still had a precision rate of 100% with the recall now at 94%.
+
+  ![ada_matrix](https://user-images.githubusercontent.com/103727169/192161285-5830636e-c39a-4396-b9b5-63392b6134fc.png)
+  ![ada_classification](https://user-images.githubusercontent.com/103727169/192161293-d5f447e7-b4fc-48a2-945c-3c7bc42171aa.png)
+
+# Summary
+
+In reviewing all six models, the EasyEnsembleClassifer model yielded the best results with an accuracy rate of 93.2% and a 9% precision rate when predicting "High Risk candidates. The sensitivity rate (aka recall) was also the highest at 92% compared to the other models. The result for predicting "Low Risk" was also the highest with the sensitivity rate at 94% and an F1 score of 97%. Therefore, if a model needed to be recommended to perform this type of analysis, then this one would be the clear choice.
+
+**Ranking of models in descending order based on "High Risk" results:**
+
+* EasyEnsembleClassifer: 93.2% accuracy, 9% precision, 92% recall, and 16% F1 Score.
+* BalancedRandomForestClassifer: 78.9% accuracy, 3% precision, 70% recall and 6% F1 Score.
+* SMOTE: 65.8% accuracy, 1% precision, 62% recall and 2% F1 Score.
+* SMOTEENN: 64.5% accuracy, 1% precision, 72% recall and 2% F1 Score.
+* RandomOverSampler: 66.0% accuracy, 1% precision, 72% recall and 2% F1 Score.
+* ClusterCentroids: 54.5% accuracy, 1% precision, 69% recall and 1% F1 Score.
+
+A side note that should be considered is that original dataset had 99% of the applications classified as "Low Risk" with only 1% of the data classified in the "High Risk" category. This may skew the results greatly as there is a risk that the Machine Learning algorithms are creating clusters drawing from too small of a dataset of actual "High Risk" applications. This margin of risk might not be something that banks would be comfortable accepting.
+
+# Resources
+
+* Dataset from LendingClub: LoanStats_2019Q1
+* Software: Python 3.7.9, Anaconda 4.9.2 and Jupyter Notebooks 6.1.4
+
+
+
+
+
+
+
 
 
 
